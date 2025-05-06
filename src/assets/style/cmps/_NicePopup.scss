@@ -1,0 +1,45 @@
+.nice-popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 10px;
+    padding: 1em;
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+main {
+    padding: 1em 0;
+}
+
+footer {
+    border-top: 1px solid #ddd;
+    padding-top: 0.5em;
+    text-align: right;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}

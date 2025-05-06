@@ -1,0 +1,82 @@
+/* .toy-filter {
+    background-color: var(--clr2bg);
+    padding: 1em;
+} */
+
+
+.filter-sort-container {
+    display: flex;
+    gap: 20px;
+}
+
+.toy-filter,
+.toy-sort {
+    padding: 1em;
+    margin: 1em 0;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    height: fit-content;
+
+}
+
+.toy-filter form,
+.toy-sort {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.toy-filter input[type="text"],
+.toy-filter input[type="number"],
+.toy-filter select,
+.toy-sort select {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.labels-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.labels-checkboxes label {
+    background-color: #e0e0e0;
+    padding: 0.4em 0.6em;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.labels-checkboxes input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.toy-sort {
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 0.5em;
+        transition: background-color 0.3s;
+    }
+}
+
+// .toy-sort {
+//     button {
+//         background-color: purple;
+//     }
+// }
+
+.toy-sort button:hover {
+    background-color: #45a049;
+}

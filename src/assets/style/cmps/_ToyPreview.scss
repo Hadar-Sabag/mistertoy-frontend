@@ -1,0 +1,36 @@
+/* .toy-preview {
+    text-align: center;
+    padding: 0.3em;
+    display: flex;
+    flex-direction: column;
+}
+.toy-preview h4{
+    text-transform: capitalize;
+    color: black;
+}
+
+.toy-preview img {
+    max-width: 100px;
+} */
+
+.toy-preview {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.toy-preview h4 {
+    text-transform: capitalize;
+    color: #333;
+    margin: 0;
+}
+
+.toy-preview img {
+    max-width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 0.5em;
+    border-radius: 8px;
+    background-color: #ccc;
+}

@@ -1,0 +1,66 @@
+/* .toy-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    gap: 0.6em;
+    margin-block: 0.6em;
+}
+
+.toy-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--clr1bg);
+    padding: 0.65em;
+} */
+
+.toy-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5em;
+    padding: 1em;
+    margin: 0;
+}
+
+.toy-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #e1f7f3;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.toy-list li:hover {
+    transform: translateY(-5px);
+}
+
+.card-actions {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    display: flex;
+    gap: 0.4em;
+}
+
+.card-actions button,
+.toy-list button {
+    background-color: #ffb400;
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.card-actions button:hover,
+.toy-list button:hover {
+    background-color: #e0a200;
+}
