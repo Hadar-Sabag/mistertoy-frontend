@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadToys, removeToy, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
 
@@ -18,6 +18,8 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const totalPages = useSelector(storeState => storeState.toyModule.totalPages)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
 
 
     useEffect(() => {
@@ -42,17 +44,29 @@ export function ToyIndex() {
         }
     }
 
-
     function onEditToy(toy) {
         navigate(`/toy/edit/${toy._id}`)
     }
+    function onNextPage() {
+        const newPageIdx = filterBy.pageIdx + 1
+        if (newPageIdx >= totalPages) return
+        setFilterBy({ ...filterBy, pageIdx: newPageIdx })
+    }
+
+    function onPrevPage() {
+        const newPageIdx = filterBy.pageIdx - 1
+        if (newPageIdx < 0) return
+        setFilterBy({ ...filterBy, pageIdx: newPageIdx })
+    }
+
 
     if (!toys && !toys.length) return <div>loading</div>
     return (
         <div>
             <h3>Toys App</h3>
             <main>
-                <Link to="/toy/edit">Add Toy</Link>
+                {loggedInUser?.isAdmin && <Link to="/toy/edit">Add Toy</Link>}
+
                 <section className='filter-sort-container'>
                     <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                     <ToySort filterBy={filterBy} onSetFilter={onSetFilter} />
@@ -66,6 +80,14 @@ export function ToyIndex() {
                     : <div>Loading...</div>
                 }
                 <hr />
+
+                <section className="pagination">
+                    <button onClick={onPrevPage} disabled={filterBy.pageIdx === 0}>Prev</button>
+                    <span>Page {filterBy.pageIdx + 1} of {totalPages}</span>
+                    <button onClick={onNextPage} disabled={filterBy.pageIdx + 1 >= totalPages}>Next</button>
+                </section>
+
+
             </main>
         </div>
     )

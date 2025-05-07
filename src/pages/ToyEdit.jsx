@@ -3,8 +3,9 @@ import { toyService } from "../services/toy.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { saveToy } from "../store/actions/toy.actions.js"
-import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { cloudinaryService } from "../services/cloudinary-service.js"
+
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
@@ -43,15 +44,6 @@ export function ToyEdit() {
         setToyToEdit(prevToy => ({ ...prevToy, [field]: value }))
     }
 
-    function handleLabelsChange(ev) {
-        const options = ev.target.options
-        const selectedLabels = []
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].selected) selectedLabels.push(options[i].value)
-        }
-        setToyToEdit(prevToy => ({ ...prevToy, labels: selectedLabels }))
-    }
-
     function onSaveToy(ev) {
         ev.preventDefault()
         saveToy(toyToEdit)
@@ -65,12 +57,21 @@ export function ToyEdit() {
             })
     }
 
-    function formValidationClass(errors, touched) {
-        const isError = !!Object.keys(errors).length
-        const isTouched = !!Object.keys(touched).length
-        if (!isTouched) return ''
-        return isError ? 'error' : 'valid'
+    function onUploadImg(ev) {
+        const file = ev.target.files[0]
+        if (!file) return
+
+        cloudinaryService.uploadImg(file)
+            .then(url => {
+                setToyToEdit(prevToy => ({ ...prevToy, imgUrl: url }))
+                showSuccessMsg('Image uploaded successfully!')
+            })
+            .catch(err => {
+                console.error('Upload failed', err)
+                showErrorMsg('Failed to upload image')
+            })
     }
+
 
     return (
         <section className="toy-edit">
@@ -95,14 +96,9 @@ export function ToyEdit() {
                     onChange={handleChange}
                 />
 
-                <label htmlFor="imgUrl">Image URL:</label>
-                <input type="text"
-                    name="imgUrl"
-                    id="imgUrl"
-                    placeholder="Enter image URL..."
-                    value={toyToEdit.imgUrl}
-                    onChange={handleChange}
-                />
+                <label htmlFor="imgUpload">Upload Image:</label>
+                <input type="file" id="imgUpload" onChange={onUploadImg} />
+
 
                 <label htmlFor="inStock">In Stock:</label>
                 <input type="checkbox"
@@ -142,7 +138,7 @@ export function ToyEdit() {
                     <Link to="/toy">Cancel</Link>
                 </div>
             </form>
-{/* 
+            {/* 
             <Formik
                 initialValues={{
                     toyName: '',

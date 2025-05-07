@@ -10,11 +10,14 @@ export const TOY_UNDO = 'TOY_UNDO'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
+
 
 const initialState = {
     toys: [],
     isLoading: false,
     filterBy: toyService.getDefaultFilter(),
+    totalPages: 1,
     lastToys: []
 }
 
@@ -59,6 +62,11 @@ export function toyReducer(state = initialState, action = {}) {
                 toys: [...state.lastToys]
             }
 
+        case SET_TOTAL_PAGES:
+            return {
+                ...state,
+                totalPages: action.totalPages
+            }
 
         default:
             return state
