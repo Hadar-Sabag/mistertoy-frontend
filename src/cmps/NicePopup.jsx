@@ -19,7 +19,7 @@ export function NicePopup({ onClose, heading, footing, children }) {
                     <button className="close-btn" onClick={onClose}>✖</button>
                 </header>
                 <main>{children}</main>
-                <footer>{footing}</footer>
+                {/* <footer>{footing}</footer> */}
             </div>
         </section>
     )
