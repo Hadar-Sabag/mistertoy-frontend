@@ -4,62 +4,73 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
     ul {
         list-style: none;
         padding: 0;
-        max-height: 200px;
-        overflow-y: auto;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
-        background: #f4f4f4;
-        padding: 0.5em;
+        gap: 8px;
+        max-height: 250px;
+        overflow-y: auto;
+        background-color: #fff;
         border-radius: 6px;
+        padding: 10px;
     }
 
     .msg {
-        margin: 5px 0;
         padding: 8px 12px;
         border-radius: 20px;
-        max-width: 70%;
+        max-width: 75%;
         word-wrap: break-word;
+        font-size: 0.95em;
+        line-height: 1.3;
     }
 
     .you {
-        background-color: #dcf8c6;
+        background-color: #dcf8c6; // ירוק וואטסאפ
+        align-self: flex-end;
         text-align: right;
-        margin-left: auto;
-        color: darkblue;
+        color: #222;
     }
 
     .bot {
         background-color: #fff;
+        border: 1px solid #ccc;
+        align-self: flex-start;
         text-align: left;
-        margin-right: auto;
-        color: darkgreen;
+        color: #333;
     }
 
     form {
         display: flex;
         gap: 5px;
-        margin-top: 10px;
     }
 
     input {
         flex: 1;
-        padding: 5px;
-        border-radius: 5px;
+        padding: 10px;
+        border-radius: 20px;
         border: 1px solid #ccc;
+        font-size: 1em;
     }
 
     button {
-        padding: 5px 10px;
-        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
         background-color: #2196F3;
         color: white;
-        border-radius: 5px;
+        border: none;
         cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #1976d2;
     }
 }

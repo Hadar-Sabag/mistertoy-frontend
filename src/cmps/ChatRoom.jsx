@@ -15,11 +15,17 @@ export function ChatRoom({ toyId }) {
         socketService.emit('chat-join', toyId)
 
         socketService.on('chat-msg', addMsg)
+        socketService.on('chat-history', (msgs) => {
+            console.log('Received chat history:', msgs)
+            setMsgs(msgs)
         socketService.on('user-typing', handleTyping)
+
+        })
 
         return () => {
             socketService.emit('chat-leave', toyId)
             socketService.off('chat-msg', addMsg)
+            socketService.off('chat-history') 
             socketService.off('user-typing', handleTyping)
         }
     }, [toyId])
