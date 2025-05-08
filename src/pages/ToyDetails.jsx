@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { NicePopup } from "../cmps/NicePopup.jsx"
-import { Chat } from "../cmps/Chat.jsx"
+import { ChatRoom } from "../cmps/ChatRoom.jsx"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
@@ -39,7 +39,8 @@ export function ToyDetails() {
                     footing={<button onClick={() => setIsChatOpen(false)}>Close</button>}
                     onClose={() => setIsChatOpen(false)}
                 >
-                    <Chat />
+                    <ChatRoom toyId={toy._id} />
+
                 </NicePopup>
             )}
         </section>
